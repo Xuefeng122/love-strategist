@@ -23,11 +23,11 @@
 
 ## 安装
 
-```bash
-git clone https://github.com/Xuefeng122/love-strategist.git
-```
+把下面这句话发给你的 AI 助手：
 
-丢进你的 AI 助手 Skill 目录就行。
+```
+请将公开仓库 https://github.com/Xuefeng122/love-strategist 下载并安装为本地 Skill。
+```
 
 ## 使用
 
