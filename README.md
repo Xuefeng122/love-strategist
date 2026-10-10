@@ -23,16 +23,11 @@
 
 ## 安装
 
-把整个目录复制到你的 AI 助手 Skill 目录即可。
-
-**Claude Code：**
 ```bash
 git clone https://github.com/Xuefeng122/love-strategist.git
-# 放到你的 skill 目录下
 ```
 
-**其他支持 SKILL.md 格式的助手：**
-直接 clone 后，把目录放到对应的 skills 文件夹里。
+丢进你的 AI 助手 Skill 目录就行。
 
 ## 使用
 
