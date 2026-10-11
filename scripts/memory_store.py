@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local, bounded, consent-gated memory store for the goutoujunshi skill."""
+"""Local, bounded, consent-gated memory store for the love-strategist skill."""
 
 from __future__ import annotations
 
@@ -48,16 +48,16 @@ def now_iso() -> str:
 
 
 def memory_dir() -> Path:
-    override = os.environ.get("GOUTOUJUNSHI_MEMORY_DIR")
+    override = os.environ.get("LOVE_STRATEGIST_MEMORY_DIR")
     if override:
         return Path(override).expanduser().resolve()
     if sys.platform == "darwin":
-        return Path.home() / "Library" / "Application Support" / "goutoujunshi"
+        return Path.home() / "Library" / "Application Support" / "love-strategist"
     if os.name == "nt":
         base = Path(os.environ.get("LOCALAPPDATA", str(Path.home())))
-        return base / "goutoujunshi"
+        return base / "love-strategist"
     base = Path(os.environ.get("XDG_DATA_HOME", str(Path.home() / ".local" / "share")))
-    return base / "goutoujunshi"
+    return base / "love-strategist"
 
 
 def db_path() -> Path:

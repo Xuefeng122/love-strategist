@@ -1,0 +1,31 @@
+# ---- 系统与编辑器 ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# ---- 本地 Skill 运行时产物 ----
+# 长期记忆数据库默认写入用户本机数据目录（如 AppData/Local/love-strategist/），
+# 不应提交到仓库；此处兜底忽略可能残留的本地副本。
+memory.sqlite3
+memory.sqlite3-wal
+memory.sqlite3-shm
+*.sqlite3
+
+# ---- 原始研究素材 ----
+# 上游的原始调研工作区与逐字稿不进入运行时 Skill，
+# 保留此目录仅作本地整理，不跟踪。
+/恋爱知识库/
+/research/
+
+# ---- 合并工作区临时文件 ----
+*.patch
+*.diff

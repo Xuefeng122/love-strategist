@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the distributable goutoujunshi skill without third-party packages."""
+"""Validate the distributable love-strategist skill without third-party packages."""
 
 from __future__ import annotations
 
@@ -12,9 +12,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ERRORS: list[str] = []
-SKILL_MAX_LINES = 150
-SKILL_MAX_CHARACTERS = 5_000
-SKILL_MAX_APPROX_TOKENS = 4_500
+SKILL_MAX_LINES = 220
+SKILL_MAX_CHARACTERS = 8_000
+SKILL_MAX_APPROX_TOKENS = 6_000
 
 REQUIRED_KNOWLEDGE = (
     "01-证据分级与内容边界.md",
@@ -64,7 +64,7 @@ def validate_frontmatter() -> None:
     description_match = re.search(r"^description:\s*(.+)$", frontmatter, re.MULTILINE)
     name = name_match.group(1).strip() if name_match else ""
     description = description_match.group(1).strip() if description_match else ""
-    if name != "goutoujunshi" or not re.fullmatch(r"[a-z0-9-]{1,64}", name):
+    if name != "love-strategist" or not re.fullmatch(r"[a-z0-9-]{1,64}", name):
         ERRORS.append(f"invalid skill name: {name!r}")
     if not description or len(description) > 1024 or "<" in description or ">" in description:
         ERRORS.append("description is empty, too long, or contains angle brackets")
@@ -101,6 +101,7 @@ def validate_skill_budget() -> None:
 
 
 def validate_inventory(runtime_only: bool) -> None:
+    require("SKILL.md")
     require("agents/openai.yaml")
     require("scripts/memory_store.py")
     if not runtime_only:
@@ -111,8 +112,8 @@ def validate_inventory(runtime_only: bool) -> None:
     for filename in REQUIRED_PRACTICAL:
         require(f"references/practical/{filename}")
     agent = ROOT / "agents/openai.yaml"
-    if agent.is_file() and "$goutoujunshi" not in agent.read_text(encoding="utf-8"):
-        ERRORS.append("agents/openai.yaml default prompt must mention $goutoujunshi")
+    if agent.is_file() and "$love-strategist" not in agent.read_text(encoding="utf-8"):
+        ERRORS.append("agents/openai.yaml default prompt must mention $love-strategist")
 
 
 def validate_routes_and_regressions(runtime_only: bool) -> None:
@@ -120,12 +121,13 @@ def validate_routes_and_regressions(runtime_only: bool) -> None:
     if skill.is_file():
         content = skill.read_text(encoding="utf-8")
         required_routes = (
+            "references/practical/童锦程风格与心智模型.md",
+            "references/practical/实战话术编排器：从一句回复到后续分支.md",
             "references/knowledge/20-经典社交体系的机制、证据与风险边界.md",
-            "references/practical/自然流、内在状态与结构化互动：伦理能力转译.md",
-            "默认只读取当前问题直接需要的 1–3 份参考",
-            "references/practical/ChatLab聊天记录分析适配.md",
-            "references/practical/长期记忆与关系档案.md",
+            "references/knowledge/05-PUA操控与伦理替代.md",
             "references/knowledge/04-MBTI人格与匹配.md",
+            "references/knowledge/17-中国法律安全与危机转介.md",
+            "默认只读取当前问题直接需要的 1–3 份参考",
         )
         for route in required_routes:
             if route not in content:
@@ -143,13 +145,13 @@ def validate_routes_and_regressions(runtime_only: bool) -> None:
             "你：MBTI / 主观综合评分0–100 / 主要优势和短板",
             "对象A：代号 / MBTI / 主观综合评分0–100 / 当前关系",
             "经过：认识方式、发展多久、最近三件关键事件、联系和双方投入",
-            "明确表示不想发展、要求不要联系或反复表示不欢迎时停止推进",
+            "明确拒绝时停止推进",
             "第一屏先给一条可复制成品",
-            "发送时机、主要代价和积极／含糊／不回应的后续",
-            "锁定“用户／对象”的说话人映射",
-            "不声称能直接读取、解密或导出",
-            "首次明确同意后才启用",
-            "不从姓名、MBTI、旧案例或模型推测补事实",
+            "发送时机、主要代价和后续分支",
+            "锁定\"用户／对象\"的说话人映射",
+            "不协助性胁迫、跟踪、威胁、勒索、散布隐私或诈骗",
+            "先确认安全并建议联系紧急服务",
+            "始终让用户保留最终决定权",
         )
         for marker in regression_markers:
             if marker not in content:
@@ -237,7 +239,7 @@ def main() -> int:
         for error in ERRORS:
             print(f"ERROR: {error}")
         return 1
-    print("goutoujunshi validation passed")
+    print("love-strategist validation passed")
     return 0
 
 

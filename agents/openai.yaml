@@ -1,0 +1,4 @@
+interface:
+  display_name: "恋爱小助手"
+  short_description: "接住情绪、拆解关系信号，并给出可执行下一步与可直接发送的话术"
+  default_prompt: "使用 $love-strategist 帮我梳理情绪、分析当前这段关系，并给出下一步建议。"
